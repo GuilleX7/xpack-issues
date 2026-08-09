@@ -1,11 +1,11 @@
 import path from "path";
 import { fileURLToPath } from "url";
-import rspack from "@rspack/core";
+import webpack from "webpack";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
- * @type import('@rspack/cli').Configuration}
+ * @type import('webpack').Configuration}
  */
 const config = {
   mode: "development",
@@ -14,8 +14,8 @@ const config = {
     main: "./src/mainEntry",
   },
   plugins: [
-    new rspack.library.EnableLibraryPlugin("jsonp"),
-    new rspack.EntryPlugin(__dirname, "./src/secondEntry", {
+    new webpack.library.EnableLibraryPlugin("jsonp"),
+    new webpack.EntryPlugin(__dirname, "./src/secondEntry", {
       name: "secondEntry",
       library: {
         type: "jsonp",
@@ -25,7 +25,7 @@ const config = {
   ],
   output: {
     clean: true,
-    path: path.resolve(__dirname, "rspack-dist"),
+    path: path.resolve(__dirname, "webpack-dist"),
     filename: "[name].js",
   },
   module: {
